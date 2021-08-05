@@ -107,6 +107,7 @@ class Ducky:
         Now, set up a loop which will run a line of the script every time `loop` is called.
 
         .. code-block:: python
+
             result = True
             while result is not False:
                 result = duck.loop()
