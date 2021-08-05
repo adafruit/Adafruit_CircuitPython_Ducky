@@ -4,4 +4,4 @@
 # SPDX-License-Identifier: MIT
 
 Adafruit-Blinka
-adafruit-hid
+adafruit-circuitpython-hid
