@@ -97,7 +97,7 @@ Or the following command to update an existing version:
 Usage Example
 =============
 
-Here is an example of using the :class:`Ducky` class.
+Here is an example of using the Ducky library.
 First you will need to import the libraries
 
 .. code-block:: python
@@ -108,7 +108,7 @@ First you will need to import the libraries
     from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
     import ducky
 
-Once this is done, define the keyboard layout and initialize the :class:`Ducky` class.
+Once this is done, define the keyboard layout and initialize the `Ducky` object.
 
 .. code-block:: python
 
