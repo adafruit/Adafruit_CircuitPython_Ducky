@@ -127,6 +127,11 @@ Now, set up a loop which will run a line of the script every time `loop` is call
         result = duck.loop()
 
 
+Documentation
+=============
+
+API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/ducky/en/latest/>`_.
+
 Contributing
 ============
 
