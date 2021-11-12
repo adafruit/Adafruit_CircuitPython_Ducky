@@ -121,7 +121,9 @@ class Ducky:
 
     """
 
-    def __init__(self, filename: str, keyboard: Keyboard, layout: KeyboardLayoutBase) -> None:
+    def __init__(
+        self, filename: str, keyboard: Keyboard, layout: KeyboardLayoutBase
+    ) -> None:
         self.keyboard = keyboard
         self.layout = layout
         self.lines = []
