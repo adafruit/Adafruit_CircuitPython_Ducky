@@ -25,6 +25,13 @@ Implementation Notes
 import time
 from adafruit_hid.keycode import Keycode
 
+try:
+    from typing import Optional
+    from adafruit_hid.keyboard import Keyboard
+    from adafruit_hid.keyboard_layout_base import KeyboardLayoutBase
+except ImportError:
+    pass
+
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_Ducky.git"
 
@@ -114,7 +121,7 @@ class Ducky:
 
     """
 
-    def __init__(self, filename, keyboard, layout):
+    def __init__(self, filename: str, keyboard: Keyboard, layout: KeyboardLayoutBase):
         self.keyboard = keyboard
         self.layout = layout
         self.lines = []
@@ -126,8 +133,8 @@ class Ducky:
                 self.lines.append(line[:-1])
 
     def loop(
-        self, line=None
-    ):  # pylint: disable=too-many-branches,too-many-return-statements
+        self, line: Optional[str] = None
+    ) -> bool:  # pylint: disable=too-many-branches,too-many-return-statements
         """ Function that sends a line of the DuckyScript file over hid every time it is called """
         if line is None:
             try:
@@ -193,7 +200,7 @@ class Ducky:
         self.lines.pop(0)
         return True
 
-    def write_key(self, start):
+    def write_key(self, start: str):
         """ Writes the keys over HID. Used to help with more complicated commands """
         if start in commands:
             self.keyboard.press(commands[start])
