@@ -132,9 +132,9 @@ class Ducky:
             for line in duckyscript:
                 self.lines.append(line[:-1])
 
-    def loop(
+    def loop(  # pylint: disable=too-many-return-statements
         self, line: Optional[str] = None
-    ) -> bool:  # pylint: disable=too-many-branches,too-many-return-statements
+    ) -> bool:  # pylint: disable=too-many-branches
         """ Function that sends a line of the DuckyScript file over hid every time it is called """
         if line is None:
             try:
