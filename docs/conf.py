@@ -49,6 +49,9 @@ project = "Adafruit CircuitPython Ducky Library"
 copyright = "2021 Dylan Herrada"
 author = "Dylan Herrada"
 
+# Ignore imports of these modules, which sphinx will not know about.
+autodoc_mock_imports = ["usb_hid"]
+
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
