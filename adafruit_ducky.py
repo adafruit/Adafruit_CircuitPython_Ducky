@@ -121,7 +121,7 @@ class Ducky:
 
     """
 
-    def __init__(self, filename: str, keyboard: Keyboard, layout: KeyboardLayoutBase):
+    def __init__(self, filename: str, keyboard: Keyboard, layout: KeyboardLayoutBase) -> None:
         self.keyboard = keyboard
         self.layout = layout
         self.lines = []
@@ -200,7 +200,7 @@ class Ducky:
         self.lines.pop(0)
         return True
 
-    def write_key(self, start: str):
+    def write_key(self, start: str) -> None:
         """ Writes the keys over HID. Used to help with more complicated commands """
         if start in commands:
             self.keyboard.press(commands[start])
