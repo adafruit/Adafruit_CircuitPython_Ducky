@@ -3,7 +3,7 @@ Introduction
 
 
 .. image:: https://readthedocs.org/projects/adafruit-circuitpython-ducky/badge/?version=latest
-    :target: https://circuitpython.readthedocs.io/projects/ducky/en/latest/
+    :target: https://docs.circuitpython.org/projects/ducky/en/latest/
     :alt: Documentation Status
 
 
@@ -130,7 +130,7 @@ Now, set up a loop which will run a line of the script every time `loop` is call
 Documentation
 =============
 
-API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/ducky/en/latest/>`_.
+API documentation for this library can be found on `Read the Docs <https://docs.circuitpython.org/projects/ducky/en/latest/>`_.
 
 Contributing
 ============
