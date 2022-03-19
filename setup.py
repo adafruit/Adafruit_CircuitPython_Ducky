@@ -37,7 +37,7 @@ setup(
     author_email="circuitpython@adafruit.com",
     install_requires=[
         "Adafruit-Blinka",
-        "adafruit_hid",
+        "adafruit-circuitpython-hid",
     ],
     # Choose your license
     license="MIT",
