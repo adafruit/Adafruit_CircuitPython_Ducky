@@ -137,7 +137,7 @@ class Ducky:
     def loop(  # pylint: disable=too-many-return-statements
         self, line: Optional[str] = None
     ) -> bool:  # pylint: disable=too-many-branches
-        """ Function that sends a line of the DuckyScript file over hid every time it is called """
+        """Function that sends a line of the DuckyScript file over hid every time it is called"""
         if line is None:
             try:
                 line = self.lines[0]
@@ -203,7 +203,7 @@ class Ducky:
         return True
 
     def write_key(self, start: str) -> None:
-        """ Writes the keys over HID. Used to help with more complicated commands """
+        """Writes the keys over HID. Used to help with more complicated commands"""
         if start in commands:
             self.keyboard.press(commands[start])
         else:
