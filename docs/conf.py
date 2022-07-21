@@ -46,8 +46,8 @@ master_doc = "index"
 
 # General information about the project.
 project = "Adafruit CircuitPython Ducky Library"
-copyright = "2021 Dylan Herrada"
-author = "Dylan Herrada"
+copyright = "2021 Eva Herrada"
+author = "Eva Herrada"
 
 # Ignore imports of these modules, which sphinx will not know about.
 autodoc_mock_imports = ["usb_hid"]
