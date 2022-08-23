@@ -47,8 +47,14 @@ master_doc = "index"
 
 # General information about the project.
 project = "Adafruit CircuitPython Ducky Library"
+creation_year = "2021"
 current_year = str(datetime.datetime.now().year)
-copyright = current_year + " Eva Herrada"
+year_duration = (
+    current_year
+    if current_year == creation_year
+    else creation_year + " - " + current_year
+)
+copyright = year_duration + " Eva Herrada"
 author = "Eva Herrada"
 
 # Ignore imports of these modules, which sphinx will not know about.
