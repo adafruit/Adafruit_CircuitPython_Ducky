@@ -6,6 +6,7 @@
 
 import os
 import sys
+import datetime
 
 sys.path.insert(0, os.path.abspath(".."))
 
@@ -46,7 +47,8 @@ master_doc = "index"
 
 # General information about the project.
 project = "Adafruit CircuitPython Ducky Library"
-copyright = "2021 Eva Herrada"
+current_year = str(datetime.datetime.now().year)
+copyright = current_year + " Eva Herrada"
 author = "Eva Herrada"
 
 # Ignore imports of these modules, which sphinx will not know about.
