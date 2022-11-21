@@ -132,7 +132,7 @@ class Ducky:
 
         with open(filename, "r") as duckyscript:
             for line in duckyscript:
-                self.lines.append(line[:-1])
+                self.lines.append(line[:-1].rstrip("\r"))
 
     def loop(  # pylint: disable=too-many-return-statements
         self, line: Optional[str] = None
