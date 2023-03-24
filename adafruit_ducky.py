@@ -139,7 +139,7 @@ class Ducky:
                     self.lines.append(line)
 
     def loop(  # pylint: disable=too-many-return-statements
-        self
+        self,
     ) -> bool:  # pylint: disable=too-many-branches
         """Function that sends a line of the DuckyScript file over hid every time it is called"""
 
