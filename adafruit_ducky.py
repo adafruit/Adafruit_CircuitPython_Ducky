@@ -128,78 +128,76 @@ class Ducky:
         self.layout = layout
         self.lines = []
         self.default_delay = 0
-        self.last = 0
+        self.prev_line = None
+        self.next_index = 0
+        self.wait_until = 0
+        self.repeat = 0
 
         with open(filename, "r") as duckyscript:
             for line in duckyscript:
-                self.lines.append(line[:-1].rstrip("\r"))
+                line = line.strip(" \r")
+                if len(line) > 0:
+                    self.lines.append(line)
 
     def loop(  # pylint: disable=too-many-return-statements
-        self, line: Optional[str] = None
+        self
     ) -> bool:  # pylint: disable=too-many-branches
         """Function that sends a line of the DuckyScript file over hid every time it is called"""
-        if line is None:
-            try:
-                line = self.lines[0]
-            except IndexError:
-                print("Done!")
-                return False
-        if len(line) != 0:
-            words = line.split(" ", 1)
-            start = words[0]
-            if start == "REM":
-                print(words[1])
-                time.sleep(self.default_delay)
-                self.lines.pop(0)
-                return True
 
-            if start in ("DEFAULT_DELAY", "DEFAULTDELAY"):
-                self.default_delay = int(words[1]) / 1000
-                time.sleep(self.default_delay)
-                self.last = self.lines[0]
-                self.lines.pop(0)
-                return True
+        now = time.monotonic_ns()
+        if now < self.wait_until:
+            return True
 
-            if start == "DELAY":
-                time.sleep(int(words[1]) / 1000)
-                time.sleep(self.default_delay)
-                self.last = self.lines[0]
-                self.lines.pop(0)
-                return True
-
-            if start == "STRING":
-                self.layout.write(words[1])
-                time.sleep(self.default_delay)
-                self.last = self.lines[0]
-                self.lines.pop(0)
-                return True
-
-            if start == "REPEAT":
-                print(int(words[1]))
-                for _ in range(int(words[1])):
-                    self.lines.insert(0, self.last)
-                    self.loop()
-                self.last = self.lines[0]
-                self.lines.pop(0)
-                return True
-
-            self.write_key(start)
-            if len(words) == 1:
-                time.sleep(self.default_delay)
-                self.last = self.lines[0]
-                self.lines.pop(0)
-                self.keyboard.release_all()
-                return True
-            if len(words[1]):
-                self.loop(line=words[1])
+        try:
+            if self.repeat > 0:
+                self.repeat -= 1
+                line = self.prev_line
             else:
-                self.keyboard.release_all()
-                return True
+                line = self.lines[self.next_index]
+                self.next_index += 1
+        except IndexError:
+            print("  DONE!")
+            self.prev_line = None
+            self.next_index = 0
+            return False
+
+        words = line.split(" ", 1)
+        start = words[0]
+
+        if start == "REPEAT":
+            self.repeat = int(words[1])
+            return True
+
+        self.prev_line = line
+
+        # print(f"  {line}")
+
+        if start == "REM":
+            # print(words[1])
+            return True
+
+        self.wait_until = now + self.default_delay
+
+        if start in ("DEFAULT_DELAY", "DEFAULTDELAY"):
+            self.wait_until -= self.default_delay
+            self.default_delay = int(words[1]) * 1000000
+            self.wait_until += self.default_delay
+            return True
+
+        if start == "DELAY":
+            self.wait_until += int(words[1]) * 1000000
+            return True
+
+        if start == "STRING":
+            self.layout.write(words[1])
+            return True
+
+        self.write_key(start)
+        if len(words) > 1:
+            for key in words[1].split(" "):
+                self.write_key(key)
 
         self.keyboard.release_all()
-        time.sleep(self.default_delay)
-        self.last = self.lines[0]
-        self.lines.pop(0)
         return True
 
     def write_key(self, start: str) -> None:
