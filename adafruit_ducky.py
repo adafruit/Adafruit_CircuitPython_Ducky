@@ -26,7 +26,6 @@ import time
 from adafruit_hid.keycode import Keycode
 
 try:
-    from typing import Optional
     from adafruit_hid.keyboard import Keyboard
     from adafruit_hid.keyboard_layout_base import KeyboardLayoutBase
 except ImportError:
