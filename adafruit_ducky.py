@@ -141,7 +141,6 @@ class Ducky:
         if line is None:
             try:
                 line = self.lines[0]
-                line = line.strip() # Fix
             except IndexError:
                 print("Done!")
                 return False
@@ -186,7 +185,7 @@ class Ducky:
 
             self.write_key(start)
             if len(words) == 1:
-                self.keyboard.release_all() 
+                self.keyboard.release_all()
                 time.sleep(self.default_delay)
                 self.last = self.lines[0]
                 self.lines.pop(0)
@@ -199,8 +198,6 @@ class Ducky:
 
         self.keyboard.release_all()
         time.sleep(self.default_delay)
-        # self.last = self.lines[0]
-        # self.lines.pop(0)
         return True
 
     def write_key(self, start: str) -> None:
