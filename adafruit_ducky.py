@@ -134,7 +134,7 @@ class Ducky:
 
         with open(filename, "r") as duckyscript:
             for line in duckyscript:
-                line = line.strip(" \r")
+                line = line.strip(" \n\r")
                 if len(line) > 0:
                     self.lines.append(line)
 
