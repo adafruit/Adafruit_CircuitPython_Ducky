@@ -134,7 +134,7 @@ class Ducky:
 
         with open(filename, "r") as duckyscript:
             for line in duckyscript:
-                line = line.strip(" \n\r")
+                line = line.lstrip(" ").rstrip("\n\r")
                 if len(line) > 0:
                     self.lines.append(line)
 
@@ -193,7 +193,7 @@ class Ducky:
 
         self.write_key(start)
         if len(words) > 1:
-            for key in words[1].split(" "):
+            for key in filter(None, words[1].split(" ")):
                 self.write_key(key)
 
         self.keyboard.release_all()
