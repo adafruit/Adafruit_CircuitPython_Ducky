@@ -25,7 +25,7 @@ CircuitPython library for running DuckyScript
 
 DuckyScript
 ============
-You can find the DuckyScript Documentation `here <https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Duckyscript>`_
+You can find the DuckyScript Documentation `here <https://docs.hak5.org/hak5-usb-rubber-ducky/>`_
 
 Dependencies
 =============
@@ -84,7 +84,7 @@ following command to install:
 
 .. code-block:: shell
 
-    circup install ducky
+    circup install adafruit_ducky
 
 Or the following command to update an existing version:
 
