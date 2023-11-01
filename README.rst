@@ -84,7 +84,7 @@ following command to install:
 
 .. code-block:: shell
 
-    circup install ducky
+    circup install adafruit_ducky
 
 Or the following command to update an existing version:
 
