@@ -104,7 +104,7 @@ First you will need to import the libraries
     import usb_hid
     from adafruit_hid.keyboard import Keyboard
     from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
-    import ducky
+    import adafruit_ducky
 
 Once this is done, define the keyboard layout and initialize the `Ducky` object.
 
@@ -114,7 +114,7 @@ Once this is done, define the keyboard layout and initialize the `Ducky` object.
     keyboard = Keyboard(usb_hid.devices)
     keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
 
-    duck = ducky.Ducky('duckyscript.txt', keyboard, keyboard_layout)
+    duck = adafruit_ducky.Ducky('duckyscript.txt', keyboard, keyboard_layout)
 
 Now, set up a loop which will run a line of the script every time `loop` is called.
 
