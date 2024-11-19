@@ -143,7 +143,7 @@ class Ducky:
     ) -> bool:  # pylint: disable=too-many-branches
         """Function that sends a line of the DuckyScript file over hid every time it is called"""
 
-        now = time.monotonic_ns()
+        now = time.monotonic()
         if now < self.wait_until:
             return True
 
@@ -179,12 +179,12 @@ class Ducky:
 
         if start in ("DEFAULT_DELAY", "DEFAULTDELAY"):
             self.wait_until -= self.default_delay
-            self.default_delay = int(words[1]) * 1000000
+            self.default_delay = int(words[1]) / 1000
             self.wait_until += self.default_delay
             return True
 
         if start == "DELAY":
-            self.wait_until += int(words[1]) * 1000000
+            self.wait_until += int(words[1]) / 1000
             return True
 
         if start == "STRING":
