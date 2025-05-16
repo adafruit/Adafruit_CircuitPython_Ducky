@@ -23,6 +23,7 @@ Implementation Notes
 
 # imports
 import time
+
 from adafruit_hid.keycode import Keycode
 
 try:
@@ -120,9 +121,7 @@ class Ducky:
 
     """
 
-    def __init__(
-        self, filename: str, keyboard: Keyboard, layout: KeyboardLayoutBase
-    ) -> None:
+    def __init__(self, filename: str, keyboard: Keyboard, layout: KeyboardLayoutBase) -> None:
         self.keyboard = keyboard
         self.layout = layout
         self.lines = []
@@ -132,15 +131,15 @@ class Ducky:
         self.wait_until = 0
         self.repeat = 0
 
-        with open(filename, "r") as duckyscript:
+        with open(filename) as duckyscript:
             for line in duckyscript:
                 line = line.lstrip(" ").rstrip("\n\r")
                 if len(line) > 0:
                     self.lines.append(line)
 
-    def loop(  # pylint: disable=too-many-return-statements
+    def loop(
         self,
-    ) -> bool:  # pylint: disable=too-many-branches
+    ) -> bool:
         """Function that sends a line of the DuckyScript file over hid every time it is called"""
 
         now = time.monotonic()
@@ -177,7 +176,7 @@ class Ducky:
 
         self.wait_until = now + self.default_delay
 
-        if start in ("DEFAULT_DELAY", "DEFAULTDELAY"):
+        if start in {"DEFAULT_DELAY", "DEFAULTDELAY"}:
             self.wait_until -= self.default_delay
             self.default_delay = int(words[1]) / 1000
             self.wait_until += self.default_delay
